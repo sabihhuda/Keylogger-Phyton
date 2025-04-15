@@ -101,4 +101,3 @@ MIT License - See [LICENSE](LICENSE) for details
 ## Contact
 For educational inquiries: sabihhuda3@gmail.com  
 **Note:** This project is not maintained for production use - created purely for academic demonstration.
-```
